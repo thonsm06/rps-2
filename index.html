@@ -17,7 +17,19 @@
             return choices[choice];
         }
         function getPlayerChoice() {
-            return prompt("Please input your choice of rock, paper or scissors:");
+            let selection = prompt("Please input your choice of rock, paper or scissors:");
+            return checkPlayerSelection(selection); 
+        }
+        function checkPlayerSelection(selection) {
+            selection = selection.toLowerCase();
+            for(let i = 0; i < 3; i++)
+            {
+                if (selection === choices[i])
+                {   
+                    return selection;
+                }
+            }
+            return getPlayerChoice(); //rerun function until the correct input is receives
         }
 
         function comparison(player, computer) {
@@ -44,10 +56,9 @@
             return result;
         }
 
-        console.log("Computer choice: " + computerSelection);
         console.log("Player choice: " + playerSelection);
+        console.log("Computer choice: " + computerSelection);
         console.log(comparison(playerSelection, computerSelection));
-
-    </script>
+</script>
 </body>
 </html>
