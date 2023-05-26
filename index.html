@@ -36,7 +36,7 @@
             let result;
             if (player == "rock") {
                 if (computer == "rock") result = "Tie Round";
-                else if (computer == "paper") result = "You lose";
+                else if (computer == "paper") result = "You Lose";
                 else result = "You Win!";
             }
             else if (player == "paper") {
@@ -63,7 +63,7 @@
                 playerSelection = getPlayerChoice();
 
                 let string = comparison(playerSelection, computerSelection);
-                if (string === "You Win!"){
+                if (string === "You Win!") {
                     playerScore++;
                 }
                 else if (string === "You Lose") {
@@ -74,7 +74,14 @@
                 console.log("Player choice: " + playerSelection);
                 console.log("Computer choice: " + computerSelection);
                 console.log(string);
+                console.log(playerScore);
+                console.log(computerScore);
             }
+            if (playerScore > computerScore) {
+                console.log("You beat the computer!")}
+            else if (playerScore < computerScore) {
+                console.log("You lose to the computer")}
+            else console.log("You tie against the computer");
 
         }
         game(5);
