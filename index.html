@@ -8,12 +8,46 @@
 </head>
 <body>
     <script>
+        const choices = ["rock", "paper", "scissors"];
+        let computerSelection = getComputerChoice();
+        let playerSelection = getPlayerChoice();
+
         function getComputerChoice() {
-            let choices = ["rock", "paper", "scissors"];
             let choice = Math.floor(Math.random()*3);
             return choices[choice];
         }
-        console.log(getComputerChoice());
+        function getPlayerChoice() {
+            return prompt("Please input your choice of rock, paper or scissors:");
+        }
+
+        function comparison(player, computer) {
+            let result;
+            if (player == "rock")
+            {
+                if (computer == "rock") result = "Tie Round";
+                else if (computer == "paper") result = "You lose";
+                else result = "You Win!";
+            }
+            else if (player == "paper")
+            {
+                if (computer == "rock") result = "You Win!";
+                else if (computer == "paper") result = "Tie Round";
+                else result = "You Lose";
+            }
+            else //player is scissors
+            {
+                if (computer == "rock") result = "You Lose";
+                else if (computer == "paper") result = "You Win!";
+                else result = "Tie Round"
+            }
+            
+            return result;
+        }
+
+        console.log("Computer choice: " + computerSelection);
+        console.log("Player choice: " + playerSelection);
+        console.log(comparison(playerSelection, computerSelection));
+
     </script>
 </body>
 </html>
