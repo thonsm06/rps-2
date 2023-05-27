@@ -21,24 +21,27 @@ body.appendChild(container);
 
 const buttons = document.querySelectorAll('button');
 buttons.forEach(button => button.addEventListener('click', (e) => {
-    console.log(e.target);
+    const computerSelection = getComputerChoice();
+    const playerSelection = e.target.textContent.toLowerCase();
+    
+    const result = playRound(playerSelection, computerSelection);
+    console.log(result);
 }))
 
 
 const choices = ["rock", "paper", "scissors"];
-let playerSelection;
-let computerSelection;
+//let playerSelection;
+//let computerSelection;
 
 function getComputerChoice() {
     let choice = Math.floor(Math.random()*3);
     return choices[choice];
 }
-/*
-function getPlayerChoice() {
+/*function getPlayerChoice() {
     let selection = prompt("Input rock, paper or scissors:");
     return checkPlayerSelection(selection); 
-}
-*/
+}*/
+/*
 function checkPlayerSelection(selection) {
     selection = selection.toLowerCase();
     for(let i = 0; i < 3; i++)
@@ -49,10 +52,10 @@ function checkPlayerSelection(selection) {
         }
     }
     return getPlayerChoice(); //rerun function until the correct input is receives
-}
+}*/
 
 function playRound(player, computer) {
-    let result;
+    let result = '';
     if (player == "rock") {
         if (computer == "rock") result = "Tie Round";
         else if (computer == "paper") result = "You Lose";
