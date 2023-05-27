@@ -13,7 +13,6 @@ const cScore = document.createElement('p');
 
 let playerScore = 0;
 let computerScore = 0;
-const choices = ["rock", "paper", "scissors"];
 
 body.style.cssText = "display: flex; flex-direction: column; align-items: center; gap: 24px; padding: 24px;";
 buttonContainer.style.cssText = "display: flex; gap: 24px;"
@@ -62,6 +61,7 @@ function main(e) { //runs everytime its click
 }
 
 function getComputerChoice() {
+    const choices = ["rock", "paper", "scissors"];
     let choice = Math.floor(Math.random()*3);
     return choices[choice];
 }
@@ -112,22 +112,27 @@ function playRound(player, computer) {
 function winner(w) {
     const container = document.createElement('div');
     const announcement = document.createElement('p');
-    container.classList.add('reset');
-    announcement.classList.add('reset');
+    const restartText = document.createElement('p');
 
-    container.style.cssText = "border: 5px solid black; padding: 32px;";
+    container.classList.toggle('reset');
+    announcement.classList.toggle('reset');
+    restartText.classList.toggle('reset');
+
+    container.style.cssText = "border: 5px solid black; padding: 32px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly";
     announcement.style.cssText = "font-size: 30px;";
+    restartText.style.cssText = "font-size: 15px;";
 
     announcement.textContent = w;
+    restartText.textContent = "Click for new game";
 
     container.appendChild(announcement);
+    container.appendChild(restartText);
     body.appendChild(container);
 
     container.addEventListener('click', reset);
 }
 
 function reset() {
-    //clear all score
     playerScore = 0;
     computerScore = 0;
     pScore.textContent = `Your score: `;
@@ -135,12 +140,8 @@ function reset() {
     pSelection.textContent = '';
     cSelection.textContent = '';
     roundResult.textContent = `Current Round Winner is `;
+
     const container = document.querySelector('div.reset');
-    const announcement = document.querySelector('p.reset');
-    container.removeEventListener('click', reset);
-    container.removeChild(announcement);
     container.remove();
-
 }
-
 
