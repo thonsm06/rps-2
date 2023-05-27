@@ -9,12 +9,20 @@ container.style.cssText = "display: flex; gap: 24px;"
 rockBtn.textContent = "Rock";
 paperBtn.textContent = "Paper";
 scissorsBtn.textContent = "Scissors";
-//rockBtn.style.cssText 
+
+rockBtn.classList.toggle('rock');
+paperBtn.classList.toggle('paper');
+scissorsBtn.classList.toggle('scissors');
 
 container.appendChild(rockBtn);
 container.appendChild(paperBtn);
 container.appendChild(scissorsBtn);
 body.appendChild(container);
+
+const buttons = document.querySelectorAll('button');
+buttons.forEach(button => button.addEventListener('click', (e) => {
+    console.log(e.target);
+}))
 
 
 const choices = ["rock", "paper", "scissors"];
