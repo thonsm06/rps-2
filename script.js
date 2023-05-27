@@ -4,6 +4,10 @@ const rockBtn = document.createElement('button');
 const paperBtn = document.createElement('button');
 const scissorsBtn = document.createElement('button');
 const selectionContainer = document.createElement('div');
+const pContainer = document.createElement('div');
+const cContainer = document.createElement('div');
+const pSelectionText = document.createElement('p');
+const cSelectionText = document.createElement('p');
 const pSelection = document.createElement('p');
 const cSelection = document.createElement('p');
 const scoreContainer = document.createElement('div');
@@ -16,12 +20,18 @@ let computerScore = 0;
 
 body.style.cssText = "display: flex; flex-direction: column; align-items: center; gap: 24px; padding: 24px;";
 buttonContainer.style.cssText = "display: flex; gap: 24px;"
-selectionContainer.style.cssText = "display: flex; gap: 32px; justify-content: space-evenly; align-items: center; border: 3px solid black; width: 600px; height: 150px; font-size: 32px;"
-scoreContainer.style.cssText = "display: flex; flex-direction: column; align-items: center;"
+selectionContainer.style.cssText = "display: flex; justify-content: space-evenly; border: 3px solid black; width: 600px; height: 200px; font-size: 32px;"
+pContainer.style.cssText = "display: flex; flex-direction: column; align-items: center; width: 300px; height: auto";
+cContainer.style.cssText = "display: flex; flex-direction: column; align-items: center; width: 300px; height: auto";
+pSelectionText.style.cssText = "font-size: 24px;";
+cSelectionText.style.cssText = "font-size: 24px;";
+scoreContainer.style.cssText = "display: flex; flex-direction: column; align-items: start; text-align: left;"
 
 rockBtn.textContent = "Rock";
 paperBtn.textContent = "Paper";
 scissorsBtn.textContent = "Scissors";
+pSelectionText.textContent = "Player choice";
+cSelectionText.textContent = "Computer choice";
 roundResult.textContent = "Current Round Winner is ";
 pScore.textContent = "Your score: ";
 cScore.textContent = "Opponent score: ";
@@ -33,8 +43,12 @@ scissorsBtn.classList.toggle('scissors');
 buttonContainer.appendChild(rockBtn);
 buttonContainer.appendChild(paperBtn);
 buttonContainer.appendChild(scissorsBtn);
-selectionContainer.appendChild(pSelection);
-selectionContainer.appendChild(cSelection);
+pContainer.appendChild(pSelectionText);
+pContainer.appendChild(pSelection);
+cContainer.appendChild(cSelectionText);
+cContainer.appendChild(cSelection);
+selectionContainer.appendChild(pContainer);
+selectionContainer.appendChild(cContainer);
 scoreContainer.appendChild(roundResult);
 scoreContainer.appendChild(pScore);
 scoreContainer.appendChild(cScore);
