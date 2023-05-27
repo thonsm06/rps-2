@@ -23,7 +23,7 @@ scoreContainer.style.cssText = "display: flex; flex-direction: column; align-ite
 rockBtn.textContent = "Rock";
 paperBtn.textContent = "Paper";
 scissorsBtn.textContent = "Scissors";
-roundResult.textContent = "Current Round Winner: ";
+roundResult.textContent = "Current Round Winner is ";
 pScore.textContent = "Your score: ";
 cScore.textContent = "Opponent score: ";
 
@@ -44,19 +44,21 @@ body.appendChild(selectionContainer);
 body.appendChild(scoreContainer);
 
 const buttons = document.querySelectorAll('button');
-buttons.forEach(button => button.addEventListener('click', main))
+buttons.forEach(button => button.addEventListener('click', main));
 
-function main(e) {
-    const playerSelection = e.target.textContent.toLowerCase();
-    const computerSelection = getComputerChoice();
-    
-    pSelection.textContent = playerSelection.toUpperCase();
-    cSelection.textContent = computerSelection.toUpperCase();
+function main(e) { //runs everytime its click
+    if (playerScore < 5 && computerScore < 5) {
+        const playerSelection = e.target.textContent.toLowerCase();
+        const computerSelection = getComputerChoice();
+        
+        pSelection.textContent = playerSelection.toUpperCase();
+        cSelection.textContent = computerSelection.toUpperCase();
 
-    const result = playRound(playerSelection, computerSelection);
-    updateScore(result); //update the score
-    roundResult.textContent = `Current Round Winner is ${result}`;
-    checkTally();
+        const result = playRound(playerSelection, computerSelection);
+        updateScore(result); //update the score
+        roundResult.textContent = `Current Round Winner is ${result}`;
+        checkTally();
+    }
 }
 
 function getComputerChoice() {
@@ -79,14 +81,10 @@ function checkTally() {
     if (playerScore >= 5) {
         //winner
         winner("Player Win!!!");
-        //end game/restart the game
-        reset();
     }
     else if (computerScore >= 5) {
         //winner
         winner("You Lose:(");
-        //end game/restart the game
-        reset();
     }
 }
 
@@ -114,14 +112,35 @@ function playRound(player, computer) {
 function winner(w) {
     const container = document.createElement('div');
     const announcement = document.createElement('p');
-    container.appendChild(announcement);
+    container.classList.add('reset');
+    announcement.classList.add('reset');
+
     container.style.cssText = "border: 5px solid black; padding: 32px;";
     announcement.style.cssText = "font-size: 30px;";
 
     announcement.textContent = w;
+
+    container.appendChild(announcement);
     body.appendChild(container);
+
+    container.addEventListener('click', reset);
 }
 
 function reset() {
-    buttons.forEach(button => button.removeEventListener('click', main))
+    //clear all score
+    playerScore = 0;
+    computerScore = 0;
+    pScore.textContent = `Your score: `;
+    cScore.textContent = `Computer score: `; 
+    pSelection.textContent = '';
+    cSelection.textContent = '';
+    roundResult.textContent = `Current Round Winner is `;
+    const container = document.querySelector('div.reset');
+    const announcement = document.querySelector('p.reset');
+    container.removeEventListener('click', reset);
+    container.removeChild(announcement);
+    container.remove();
+
 }
+
+
